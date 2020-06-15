@@ -28,8 +28,8 @@ public class PersonService {
         return personDao.selectAllPerson();
     }
 
-    public Optional<Person> selectPersonById(UUID id){
-        return personDao.selectPersonById(id);
+    public Optional<Person> selectPersonById(UUID id, String name) {
+        return personDao.selectPersonById(id, name);
     }
 
     public int deletePersonById(UUID id){

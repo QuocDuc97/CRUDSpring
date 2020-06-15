@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Function;
 
 @Repository("fakeDao")
 public class PersonFakeDataAccess implements PersonDao {
@@ -25,7 +24,7 @@ public class PersonFakeDataAccess implements PersonDao {
     }
 
     @Override
-    public Optional<Person> selectPersonById(UUID id) {
+    public Optional<Person> selectPersonById(UUID id, String name) {
         return DB.stream()
                 .filter(person -> person.getId().equals(id))
                 .findFirst()
@@ -34,12 +33,12 @@ public class PersonFakeDataAccess implements PersonDao {
 
     @Override
     public int deletePersonById(UUID id) {
-        //check person exists or not exists
-        Optional<Person> personMaybe= selectPersonById(id);
-        if (personMaybe.isEmpty()) {
-            return 0;
-        }
-        DB.remove(personMaybe.get());
+//        //check person exists or not exists
+//        Optional<Person> personMaybe= selectPersonById(id);
+//        if (personMaybe.isEmpty()) {
+//            return 0;
+//        }
+//        DB.remove(personMaybe.get());
         return 1;
     }
 
@@ -47,14 +46,15 @@ public class PersonFakeDataAccess implements PersonDao {
     @Override
     public int updatePersonById(UUID id, Person personUpdate) {
         //check person exists or not exists
-        return selectPersonById(id).map(person -> {
-            int indexOfPersonSelect = DB.indexOf(person);
-            if (indexOfPersonSelect >= 0) {
-                DB.set(indexOfPersonSelect, new Person(id, personUpdate.getFullname()));
-                return 1;
-            }
-            return 0;
-        }).orElse(0);
+//        return selectPersonById(id).map(person -> {
+//            int indexOfPersonSelect = DB.indexOf(person);
+//            if (indexOfPersonSelect >= 0) {
+//                DB.set(indexOfPersonSelect, new Person(id, personUpdate.getFullname()));
+//                return 1;
+//            }
+//            return 0;
+//        }).orElse(0);
+        return 0;
 
     }
 }

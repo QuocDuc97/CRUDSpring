@@ -29,9 +29,9 @@ public class PersonControler {
     }
 
     //hello
-    @GetMapping(path = "{id}")
-    public Person selectPersonById(@PathVariable("id") UUID id){
-         return personService.selectPersonById(id)
+    @GetMapping(path = "id={id}&name={name}")
+    public Person selectPersonById(@PathVariable("id") UUID id, @PathVariable("name") String name) {
+        return personService.selectPersonById(id, name)
                 .orElse(null);
     }
 
